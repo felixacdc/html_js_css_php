@@ -1,5 +1,6 @@
 var datos = ['Juan', 'Mario', 'Ana', 'Juana'];
 var grados = ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto', 'Sexto'];
+var secciones = ['A', 'B', 'C', 'D'];
 
 // Con JavaScript
 var alumnos = document.getElementById("alumnos");
@@ -18,3 +19,11 @@ var selectGrados = $("#Grados");
 $(grados).each(function(i, v){ // indice, valor
     selectGrados.append('<option value="' + v + '">' + v + '</option>');
 });
+
+// Con Vue
+new Vue({
+	el: 'body',
+	data: {
+		datosSecciones: secciones
+	}
+})

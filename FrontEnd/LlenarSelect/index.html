@@ -18,8 +18,13 @@
 				<select name="alumnos" id="alumnos" class="form-control"></select>
 				<label for="Grados">Jquery</label>
 				<select name="Grados" id="Grados" class="form-control"></select>
-				<label for="alumnos">Vue.js</label>
-				<select name="alumnosVue" id="alumnosVue" class="form-control"></select>
+				<label for="Secciones">Vue.js</label>
+				<select name="Secciones" class="form-control">
+					<option v-for="option in datosSecciones" v-bind:value="option">
+						{{ option }}
+					</option>
+				</select>
+				<pre>{{ datosSecciones|json }}</pre>
 			</div>
 		</div>
 	</div>
