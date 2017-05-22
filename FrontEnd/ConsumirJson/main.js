@@ -6,4 +6,23 @@ function leerConJquery() {
     });
 }
 
+function leerConVue() {
+	new Vue({
+		el: 'body',
+		data: {
+			datosCursos: null
+		},
+		ready: function() {
+			this.$http.get('cursos.json').then(response => {
+
+				this.datosCursos = response.body;
+
+			}, response => {
+				console.log(response);
+			});
+		}
+	})
+}
+
 leerConJquery();
+leerConVue();
