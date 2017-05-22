@@ -1,0 +1,8 @@
+[
+	{"nombre": "Marcos", "edad": 35, "profesion": "Maestro"},
+	{"nombre": "Refael", "edad": 20, "profesion": "Bachiller en computacion"},
+	{"nombre": "Donatelo", "edad": 30, "profesion": "Bachiller en medicina"},
+	{"nombre": "Brus", "edad": 25, "profesion": "Maestro"},
+	{"nombre": "Logan", "edad": 28, "profesion": "Secretariado"},
+	{"nombre": "Eddie", "edad": 29, "profesion": "Maestro"}
+]

@@ -1,0 +1,8 @@
+[
+	{"nombre": "Matematicas", "calificacion": 10},
+	{"nombre": "Ciencias Naturales", "calificacion": 8},
+	{"nombre": "Ciencias Sociales", "calificacion": 7},
+	{"nombre": "Computacion", "calificacion": 7},
+	{"nombre": "Ingles", "calificacion": 9},
+	{"nombre": "Lenguaje Español", "calificacion": 10}
+]

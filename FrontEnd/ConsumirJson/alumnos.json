@@ -1,0 +1,8 @@
+[
+	{"nombre": "Juan", "edad": 10, "sexo": "masculino"},
+	{"nombre": "Ana", "edad": 11, "sexo": "femenino"},
+	{"nombre": "Pablo", "edad": 10, "sexo": "masculino"},
+	{"nombre": "Maria", "edad": 12, "sexo": "femenino"},
+	{"nombre": "Raul", "edad": 9, "sexo": "masculino"},
+	{"nombre": "Carlos", "edad": 8, "sexo": "masculino"}
+]
