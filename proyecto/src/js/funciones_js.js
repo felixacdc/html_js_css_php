@@ -11,6 +11,8 @@ var tituloModal = document.getElementById("tituloModal");
 var btnRegistrar = document.getElementById("btnRegistrar");
 var btnGuardar = document.getElementById("btnGuardar");
 var btnEditar = document.getElementById("btnEditar");
+var expresionRegularTelefono = /^([0-9]+){8}$/;
+var expresionRegularEdad = /^\d*$/;
 
 function fnClRegistrar() {
 	tituloModal.innerHTML = "Registrar";
@@ -88,19 +90,29 @@ function fnClGuardar() {
 		errorEdad.style.display = 'block';
 		edad.parentNode.parentNode.classList.add('has-error');
 		validacion = false;
-	}	
+	} else if(parseFloat(edad.value) <= 0) {
+		errorEdad.innerHTML = "Edad incorrecta.";
+		errorEdad.style.display = 'block';
+		edad.parentNode.parentNode.classList.add('has-error');
+		validacion = false;
+	}
 
 	if(telefono.value.trim() == "") {
 		errorTelefono.innerHTML = vacios;
 		errorTelefono.style.display = 'block';
 		telefono.parentNode.parentNode.classList.add('has-error');
 		validacion = false;
-	}	
+	} else if(!expresionRegularTelefono.test(telefono.value.trim())) {
+		errorTelefono.innerHTML = "Telefono incorrecto.";
+		errorTelefono.style.display = 'block';
+		telefono.parentNode.parentNode.classList.add('has-error');
+		validacion = false;
+	}
 
 	if(grados.value == "") {
 		errorGrados.innerHTML = vacios;
 		errorGrados.style.display = 'block';
 		grados.parentNode.parentNode.classList.add('has-error');
 		validacion = false;
-	}	
+	}
 }
