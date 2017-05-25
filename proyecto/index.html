@@ -38,7 +38,7 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
-				<a href="#" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#registrar">Registrar</a>
+				<a href="#" id="btnRegistrar" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#modalAccion">Registrar</a>
 			</div>
 		</div>
 		<footer>
@@ -52,13 +52,13 @@
 	</div>
 
 	<!-- Modal -->
-	<div id="registrar" class="modal fade" role="dialog">
+	<div id="modalAccion" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Registrar</h4>
+					<h4 class="modal-title" id="tituloModal"></h4>
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal">
@@ -90,7 +90,7 @@
 					    <div class="form-group">
 					      <label for="select" class="col-lg-2 control-label">Grados</label>
 					      <div class="col-lg-10">
-					        <select multiple="" class="form-control"></select>
+					        <select multiple="" class="form-control" id="grados"></select>
 					      </div>
 					    </div>
 					  </fieldset>
@@ -98,12 +98,14 @@
 				</div>
 				<div class="modal-footer">
 			        <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
-			        <button type="submit" class="btn btn-primary">Registrar</button>
+			        <button type="submit" class="btn btn-primary">Guardar</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script src="libraries/js/jquery-2.2.4.min.js"></script>
 	<script src="libraries/js/bootstrap.min.js"></script>
+	<script src="src/js/funciones_js.js"></script>
+	<script src="src/js/main_js.js"></script>
 </body>
 </html>
