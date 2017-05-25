@@ -1,18 +1,35 @@
+var nombres = document.getElementById("nombres");
+var errorNombres = document.getElementById("errorNombres");
+var apellidos = document.getElementById("apellidos");
+var errorApellidos = document.getElementById("errorApellidos");
+var edad = document.getElementById("edad");
+var errorEdad = document.getElementById("errorEdad");
+var telefono = document.getElementById("telefono");
+var errorTelefono = document.getElementById("errorTelefono");
+var grados = document.getElementById("grados");
+var tituloModal = document.getElementById("tituloModal");
+var btnRegistrar = document.getElementById("btnRegistrar");
+var btnGuardar = document.getElementById("btnGuardar");
+var btnEditar = document.getElementById("btnEditar");
+
 function fnClRegistrar() {
-	document.getElementById("tituloModal").innerHTML = "Registrar";
+	tituloModal.innerHTML = "Registrar";
+	btnGuardar.style.display = 'inline-block';
+	btnEditar.style.display = 'none';
+	limpiarValidaciones();
 	fnLimpiarInputs();
 }
 
 function fnLimpiarInputs() {
-	document.getElementById("nombres").value = "";
-	document.getElementById("apellidos").value = "";
-	document.getElementById("edad").value = "";
-	document.getElementById("telefono").value = "";
+	nombres.value = "";
+	apellidos.value = "";
+	edad.value = "";
+	telefono.value = "";
+	grados.value = null;
 }
 
 function llenarGrados() {
 	let xmlhttp = new XMLHttpRequest();
-	var grados = document.getElementById("grados");
 	
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -31,4 +48,59 @@ function llenarGrados() {
 
 	xmlhttp.open("GET","grados.json");
 	xmlhttp.send();
+}
+
+function limpiarValidaciones() {
+	errorNombres.style.display = 'none';	
+	errorApellidos.style.display = 'none';
+	errorEdad.style.display = 'none';
+	errorTelefono.style.display = 'none';
+	errorGrados.style.display = 'none';
+	nombres.parentNode.parentNode.classList.remove('has-error');
+	apellidos.parentNode.parentNode.classList.remove('has-error');
+	edad.parentNode.parentNode.classList.remove('has-error');
+	telefono.parentNode.parentNode.classList.remove('has-error');
+	grados.parentNode.parentNode.classList.remove('has-error');
+}
+
+function fnClGuardar() {
+	var validacion = true;
+	var vacios = "Este campo es requerido.";
+
+	limpiarValidaciones();
+
+	if(nombres.value.trim() == "") {
+		errorNombres.innerHTML = vacios;
+		errorNombres.style.display = 'block';
+		nombres.parentNode.parentNode.classList.add('has-error');
+		validacion = false;
+	}
+
+	if(apellidos.value.trim() == "") {
+		errorApellidos.innerHTML = vacios;
+		errorApellidos.style.display = 'block';
+		apellidos.parentNode.parentNode.classList.add('has-error');
+		validacion = false;
+	}	
+
+	if(edad.value.trim() == "") {
+		errorEdad.innerHTML = vacios;
+		errorEdad.style.display = 'block';
+		edad.parentNode.parentNode.classList.add('has-error');
+		validacion = false;
+	}	
+
+	if(telefono.value.trim() == "") {
+		errorTelefono.innerHTML = vacios;
+		errorTelefono.style.display = 'block';
+		telefono.parentNode.parentNode.classList.add('has-error');
+		validacion = false;
+	}	
+
+	if(grados.value == "") {
+		errorGrados.innerHTML = vacios;
+		errorGrados.style.display = 'block';
+		grados.parentNode.parentNode.classList.add('has-error');
+		validacion = false;
+	}	
 }

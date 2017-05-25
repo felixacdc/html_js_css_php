@@ -1,3 +1,3 @@
-var btnRegistrar = document.getElementById("btnRegistrar");
 btnRegistrar.onclick = fnClRegistrar;
+btnGuardar.onclick = fnClGuardar;
 llenarGrados();
