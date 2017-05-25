@@ -115,4 +115,26 @@ function fnClGuardar() {
 		grados.parentNode.parentNode.classList.add('has-error');
 		validacion = false;
 	}
+
+	if(validacion)
+		guardarForm();
+}
+
+function guardarForm() {
+	var ajax_url = "BackEnd/Guardar.php";
+	var params = "nombres=valor&apellidos=otro_valor";
+	var ajax_request = new XMLHttpRequest();
+
+	ajax_request.onreadystatechange = function() {
+		if (ajax_request.readyState == 4 && ajax_request.status == 200) {
+		    var jsonResponse = ajax_request.responseText;
+		    var objeto_json = JSON.parse(jsonResponse);
+		 
+		    console.log(objeto_json);	    
+		}
+	}
+
+	ajax_request.open( "POST", ajax_url, true );
+	ajax_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	ajax_request.send( params );
 }
