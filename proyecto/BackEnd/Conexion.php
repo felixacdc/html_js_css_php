@@ -1,10 +1,10 @@
 <?php 
 
 class Conexion() {
-	public $db;  
+    public $db;  
     private static $dns = "mysql:host=localhost;dbname=phpbasico"; 
-    private static $user = "user"; 
-    private static $pass = "password";     
+    private static $user = "adminZWZaTmN"; 
+    private static $pass = "9Fueg1hPIVnk";     
     private static $instance;
 
     public function __construct ()  

@@ -122,7 +122,7 @@ function fnClGuardar() {
 
 function guardarForm() {
 	var ajax_url = "BackEnd/Guardar.php";
-	var params = "nombres=valor&apellidos=otro_valor";
+	var params = "nombres=" + nombres.value + "&apellidos=" + apellidos.value + "&edad=" + edad.value + "&telefono=" + telefono.value + "&grados=" + grados.value;
 	var ajax_request = new XMLHttpRequest();
 
 	ajax_request.onreadystatechange = function() {
@@ -134,7 +134,7 @@ function guardarForm() {
 		}
 	}
 
-	ajax_request.open( "POST", ajax_url, true );
-	ajax_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	ajax_request.send( params );
+	ajax_request.open("POST", ajax_url);
+	ajax_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	ajax_request.send(params);
 }
