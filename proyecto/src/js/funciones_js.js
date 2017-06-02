@@ -16,6 +16,13 @@ var expresionRegularEdad = /^\d*$/;
 var alertaSucces = document.getElementById("alertaSucces");
 var alertaSuccesTXT = document.getElementById("alertaSuccesTXT");
 
+function fnOcultarAlerts() {
+	var elementos = document.querySelectorAll('.alert');
+	for(i = 0; i < elementos.length ; i++) {
+		elementos[i].style.display = "none";
+	}
+}
+
 function fnClRegistrar() {
 	tituloModal.innerHTML = "Registrar";
 	btnGuardar.style.display = 'inline-block';
@@ -131,19 +138,18 @@ function guardarForm() {
 		if (ajax_request.readyState == 4 && ajax_request.status == 200) {
 		    var jsonResponse = ajax_request.responseText;
 		    var objeto_json = JSON.parse(jsonResponse);
-		    console.info(jsonResponse);
 		 	
 		 	$('#modalAccion').modal('hide');
 
-		 	if(jsonResponse.status == true){
+		 	if(objeto_json.status == true){
 		 		alertaSucces.style.display = 'block';
-		 		alertaSuccesTXT.innerHTML = "Registro guardado correctamente.";
+		 		alertaSuccesTXT.innerHTML = objeto_json.respuesta;
 		 	} else {
 		 		alertaSucces.style.display = 'block';
 		 		alertaSuccesTXT.innerHTML = "Ha ocurrido un error al guardar el registro.";
 		 	}
 
-
+		 	setTimeout(function(){ fnOcultarAlerts(); }, 4000);
 		}
 	}
 
