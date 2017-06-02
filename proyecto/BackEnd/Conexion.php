@@ -1,24 +1,14 @@
 <?php 
 
-class Conexion() {
-    public $db;  
-    private static $dns = "mysql:host=localhost;dbname=phpbasico"; 
-    private static $user = "adminZWZaTmN"; 
-    private static $pass = "9Fueg1hPIVnk";     
-    private static $instance;
-
-    public function __construct ()  
-    {        
-       $this->db = new PDO(self::$dns,self::$user,self::$pass);       
-    } 
-
-    public static function getInstance()
-    { 
-        if(!isset(self::$instance)) 
-        { 
-            $object= __CLASS__; 
-            self::$instance = new $object; 
-        } 
-        return self::$instance; 
-    } 
+/**
+ * Clase Conexion
+ */
+class Conexion extends PDO
+{
+    function __construct()
+    {
+        $DB_HOST = getenv('OPENSHIFT_MYSQL_DB_HOST');
+        parent::__construct('mysql:host='. $DB_HOST . ';dbname=registroalumnos', 'adminRaqCSZg', 'XKURDx9dYjNY');
+        $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
 }

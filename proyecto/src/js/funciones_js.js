@@ -13,6 +13,8 @@ var btnGuardar = document.getElementById("btnGuardar");
 var btnEditar = document.getElementById("btnEditar");
 var expresionRegularTelefono = /^([0-9]+){8}$/;
 var expresionRegularEdad = /^\d*$/;
+var alertaSucces = document.getElementById("alertaSucces");
+var alertaSuccesTXT = document.getElementById("alertaSuccesTXT");
 
 function fnClRegistrar() {
 	tituloModal.innerHTML = "Registrar";
@@ -129,8 +131,19 @@ function guardarForm() {
 		if (ajax_request.readyState == 4 && ajax_request.status == 200) {
 		    var jsonResponse = ajax_request.responseText;
 		    var objeto_json = JSON.parse(jsonResponse);
-		 
-		    console.log(objeto_json);	    
+		    console.info(jsonResponse);
+		 	
+		 	$('#modalAccion').modal('hide');
+
+		 	if(jsonResponse.status == true){
+		 		alertaSucces.style.display = 'block';
+		 		alertaSuccesTXT.innerHTML = "Registro guardado correctamente.";
+		 	} else {
+		 		alertaSucces.style.display = 'block';
+		 		alertaSuccesTXT.innerHTML = "Ha ocurrido un error al guardar el registro.";
+		 	}
+
+
 		}
 	}
 
