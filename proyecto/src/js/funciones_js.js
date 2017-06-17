@@ -15,6 +15,7 @@ var expresionRegularTelefono = /^([0-9]+){8}$/;
 var expresionRegularEdad = /^\d*$/;
 var alertaSucces = document.getElementById("alertaSucces");
 var alertaSuccesTXT = document.getElementById("alertaSuccesTXT");
+var bodyTable = document.getElementById("bodyTAlumnos");
 
 function fnOcultarAlerts() {
 	var elementos = document.querySelectorAll('.alert');
@@ -41,19 +42,19 @@ function fnLimpiarInputs() {
 
 function llenarGrados() {
 	let xmlhttp = new XMLHttpRequest();
-	
+
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		    var jsonResponse = xmlhttp.responseText;
 		    var objeto_json = JSON.parse(jsonResponse);
-		 
+
 		    for (var i=0; i < objeto_json.length; i++) {
 		    	var aTag = document.createElement('option');
 			    aTag.setAttribute('value', objeto_json[i].nombre);
 			    aTag.innerHTML = objeto_json[i].nombre;
 
 				grados.appendChild(aTag);
-		    }	    
+		    }
 		}
 	}
 
@@ -62,7 +63,7 @@ function llenarGrados() {
 }
 
 function limpiarValidaciones() {
-	errorNombres.style.display = 'none';	
+	errorNombres.style.display = 'none';
 	errorApellidos.style.display = 'none';
 	errorEdad.style.display = 'none';
 	errorTelefono.style.display = 'none';
@@ -92,7 +93,7 @@ function fnClGuardar() {
 		errorApellidos.style.display = 'block';
 		apellidos.parentNode.parentNode.classList.add('has-error');
 		validacion = false;
-	}	
+	}
 
 	if(edad.value.trim() == "") {
 		errorEdad.innerHTML = vacios;
@@ -129,6 +130,50 @@ function fnClGuardar() {
 		guardarForm();
 }
 
+function listarAlumnos() {
+	var ajax_url = "BackEnd/Listar.php";
+	var ajax_request = new XMLHttpRequest();
+
+	ajax_request.onreadystatechange = function() {
+		if (ajax_request.readyState == 4 && ajax_request.status == 200) {
+		    var jsonResponse = ajax_request.responseText;
+		    var objeto_json = JSON.parse(jsonResponse);
+
+				for (var i=0; i < objeto_json.respuesta.length; i++) {
+		    	var trTag = document.createElement('tr');
+					var tdNomTag = document.createElement('td');
+					var txtNom = document.createTextNode(objeto_json.respuesta[i].nombres);
+					tdNomTag.appendChild(txtNom);
+					trTag.appendChild(tdNomTag);
+					var tdApTag = document.createElement('td');
+					var txtAp = document.createTextNode(objeto_json.respuesta[i].apellidos);
+					tdApTag.appendChild(txtAp);
+					trTag.appendChild(tdApTag);
+					var tdEdadTag = document.createElement('td');
+					var txtEdad = document.createTextNode(objeto_json.respuesta[i].edad);
+					tdEdadTag.appendChild(txtEdad);
+					trTag.appendChild(tdEdadTag);
+					var tdTelTag = document.createElement('td');
+					var txtTel = document.createTextNode(objeto_json.respuesta[i].telefono);
+					tdTelTag.appendChild(txtTel);
+					trTag.appendChild(tdTelTag);
+					var tdGraTag = document.createElement('td');
+					var txtGra = document.createTextNode(objeto_json.respuesta[i].grado);
+					tdGraTag.appendChild(txtGra);
+					trTag.appendChild(tdGraTag);
+
+					bodyTable.appendChild(trTag);
+		    }
+				console.log(objeto_json.respuesta.length);
+				console.log(objeto_json);
+		}
+	}
+
+	ajax_request.open("GET", ajax_url, true);
+	ajax_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	ajax_request.send();
+}
+
 function guardarForm() {
 	var ajax_url = "BackEnd/Guardar.php";
 	var params = "nombres=" + nombres.value + "&apellidos=" + apellidos.value + "&edad=" + edad.value + "&telefono=" + telefono.value + "&grados=" + grados.value;
@@ -138,7 +183,7 @@ function guardarForm() {
 		if (ajax_request.readyState == 4 && ajax_request.status == 200) {
 		    var jsonResponse = ajax_request.responseText;
 		    var objeto_json = JSON.parse(jsonResponse);
-		 	
+
 		 	$('#modalAccion').modal('hide');
 
 		 	if(objeto_json.status == true){
